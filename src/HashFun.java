@@ -9,8 +9,7 @@ import java.util.List;
 
 public class HashFun {
 	String[] arr;
-	long arrSize;
-	//int itemsinarr = 0;
+	int arrSize;
 
 	public static void main(String[] args) throws IOException {
 		
@@ -23,33 +22,32 @@ public class HashFun {
 		String[] elements = stringList.toArray(new String[]{});
 			
 		
-		fun1.getbiggesthash(elements);
-		HashFun function = new HashFun(fun1.getbiggesthash(elements));
+		//fun1.getbiggesthash(elements);
+		HashFun function = new HashFun(fun1.getbiggesthash(elements) * 2);
 
 		
-		//for (int i = 0; i < elements.length; i++){
-		//	System.out.println(elements[i]);
-	//	}
+		for (int i = 0; i < function.arrSize; i++){
+			function.arr[i] = "000";
+			//System.out.println(i + " - " + function.arr[i]);
+		}
 		
 		
-		//function.hashfunction(elements, function.arr);
+		function.hashfunction(elements, function.arr);
 		
 	}
 
 	HashFun(int inSize) {
 		arrSize = inSize;
-		arr = new String[(int) arrSize];
-		//Arrays.fill(arr, "");
-
+		arr = new String[arrSize];
 	}
 
 	public int getbiggesthash(String[] inStrings){
 		int bighash = 0;
 		for (int i = 0; i < inStrings.length; i++){
 			String currentelement = inStrings[i];
-			int hash = 3;
+			int hash = 0;
 			for (int j = 0; j < currentelement.length(); j++){
-				hash = hash * 31 + currentelement.charAt(j);
+				hash = hash + currentelement.charAt(j);
 				hash = Math.abs(hash);	
 			}
 			if (hash > bighash)
@@ -60,20 +58,35 @@ public class HashFun {
 	}
 	
 	public void hashfunction(String[] inStrings, String[] inArr) {
-		int bighash = 0;
+
 		for (int i = 0; i < inStrings.length; i++){
 			String currentelement = inStrings[i];
-			int hash = 3;
+			int hash = 0;
 			for (int j = 0; j < currentelement.length(); j++){
-				hash = hash * 31 + currentelement.charAt(j);
-				hash = Math.abs(hash);	
+				hash = hash + currentelement.charAt(j);
+				//hash = Math.abs(hash);	
 			}
-			if (hash > bighash)
-				bighash = hash;
-			System.out.println(hash);
-		}
-		System.out.println("biggest hash = " + bighash);
+			//if (inArr[hash] == "poopooooooo")
+			//	System.out.println("EQUAL");
+			//else 
+			//	System.out.println("NOTEQUAL");
 
+			for (int k = 0; k < inArr.length; k++){
+				System.out.println(inArr[k]);
+				if (inArr[hash].equals("000"))
+					System.out.println("We Got ZEROS");
+
+			}
+			
+	/*		while (!inArr[hash].equals("000")){
+				hash++;
+				System.out.println("inloop");
+				if (hash >= inArr.length)
+					hash = 0;
+		
+			}*/
+			arr[hash] = currentelement;
+		}
 	}
 	
 	
