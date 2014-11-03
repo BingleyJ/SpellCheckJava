@@ -15,7 +15,6 @@ public class HashFun {
 		
 		HashFun fun1 = new HashFun(1);
 
-		//load dict
 		Path filePath = new File("dictionary.txt").toPath();
 		Charset charset = Charset.defaultCharset();        
 		List<String> stringList = Files.readAllLines(filePath, charset);
@@ -27,12 +26,10 @@ public class HashFun {
 
 		
 		for (int i = 0; i < function.arrSize; i++){
-			function.arr[i] = "000";
+			function.arr[i] = null;
 			//System.out.println(i + " - " + function.arr[i]);
 		}
-		
-		
-		function.hashfunction(elements, function.arr);
+		function.arr = function.hashfunction(elements, function.arr);
 		
 	}
 
@@ -57,36 +54,18 @@ public class HashFun {
 		return bighash;
 	}
 	
-	public void hashfunction(String[] inStrings, String[] inArr) {
+	public String[] hashfunction(String[] inStrings, String[] inArr) {
 
 		for (int i = 0; i < inStrings.length; i++){
 			String currentelement = inStrings[i];
+			System.out.println(i + " - String " + inStrings[i]);
 			int hash = 0;
 			for (int j = 0; j < currentelement.length(); j++){
 				hash = hash + currentelement.charAt(j);
-				//hash = Math.abs(hash);	
 			}
-			//if (inArr[hash] == "poopooooooo")
-			//	System.out.println("EQUAL");
-			//else 
-			//	System.out.println("NOTEQUAL");
-
-			for (int k = 0; k < inArr.length; k++){
-				System.out.println(inArr[k]);
-				if (inArr[hash].equals("000"))
-					System.out.println("We Got ZEROS");
-
-			}
-			
-	/*		while (!inArr[hash].equals("000")){
-				hash++;
-				System.out.println("inloop");
-				if (hash >= inArr.length)
-					hash = 0;
-		
-			}*/
-			arr[hash] = currentelement;
+				arr[hash] = currentelement;
 		}
+		return arr;
 	}
 	
 	
