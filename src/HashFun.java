@@ -53,18 +53,6 @@ public class HashFun {
 	}
 
 	
-	public boolean exists(String[] inSring, int inKey){
-		ifExists = false;
-		
-		
-		
-		
-		return ifExists;
-		
-	}
-	
-	
-	
 	public String[] hashfunction(String[] inStrings, String[] inArr) {
 
 		for (int i = 0; i < inStrings.length; i++) {
