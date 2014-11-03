@@ -1,10 +1,8 @@
 import java.io.File;
 import java.io.IOException;
-//import java.io.ObjectInputStream.GetField;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
-//import java.util.Arrays;
 import java.util.List;
 
 public class HashFun {
@@ -19,16 +17,13 @@ public class HashFun {
 		Charset charset = Charset.defaultCharset();
 		List<String> stringList = Files.readAllLines(filePath, charset);
 		String[] elements = stringList.toArray(new String[] {});
-
-		// fun1.getbiggesthash(elements);
+		
 		HashFun function = new HashFun(fun1.getbiggesthash(elements) * 2);
-
+		// set array to all null.
 		for (int i = 0; i < function.arrSize; i++) {
 			function.arr[i] = null;
-			// System.out.println(i + " - " + function.arr[i]);
 		}
 		function.arr = function.hashfunction(elements, function.arr);
-
 	}
 
 	HashFun(int inSize) {
@@ -36,6 +31,16 @@ public class HashFun {
 		arr = new String[arrSize];
 	}
 
+	
+	
+	
+	
+public int getIndex(String[] inString, String key){
+	return arrSize;
+	
+}
+	
+	
 	public int getbiggesthash(String[] inStrings) {
 		int bighash = 0;
 		for (int i = 0; i < inStrings.length; i++) {
@@ -52,12 +57,30 @@ public class HashFun {
 		return bighash;
 	}
 
-	
-	public String[] hashfunction(String[] inStrings, String[] inArr) {
-
+	public int gethash(String[] inStrings){
+		int needthis = 0;
 		for (int i = 0; i < inStrings.length; i++) {
 			String currentelement = inStrings[i];
-			System.out.println("Array[" + i + "]=[" + inStrings[i] + "]");
+			int hash = 0;
+			for (int j = 0; j < currentelement.length(); j++) {
+				hash = hash + currentelement.charAt(j);
+				hash = Math.abs(hash);
+			}
+			if (hash > bighash)
+				bighash = hash;
+		}
+		
+		return needthis;
+				
+	}
+	
+	
+	public String[] hashfunction(String[] inStrings, String[] inArr) {
+int count = 0;
+		for (int i = 0; i < inStrings.length; i++) {
+			count++;
+			String currentelement = inStrings[i];
+			System.out.println(i + " hasH tAblE  Bucket[" + i + "] holds STR->[" + inStrings[i] + "]");
 			
 			int hash = 0;
 			for (int j = 0; j < currentelement.length(); j++) {
