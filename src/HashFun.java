@@ -84,6 +84,8 @@ int count = 0;
 			
 			int hash = 0;
 			for (int j = 0; j < currentelement.length(); j++) {
+				System.out.println(i + " 9999999999  Bucket[" + i + "] holds STR->[" + inStrings[i] + "]");
+
 				hash = hash + currentelement.charAt(j);
 			}
 			arr[hash] = currentelement;
